@@ -97,6 +97,13 @@ functions:
           path: jobPost
           method: post
           cors: true
+
+  s3_notification:
+    handler: features/listen.s3_notification
+    events:
+      - s3:
+          bucket: s3-christian-hackers-resumes
+          event: s3:ObjectCreated:*
 #      - s3: ${env:BUCKET}
 #      - schedule: rate(10 minutes)
 #      - sns: greeter-topic
