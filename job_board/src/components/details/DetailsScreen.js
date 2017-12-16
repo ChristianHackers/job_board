@@ -14,10 +14,11 @@ export default class DetailsScreen extends Component {
   };
 
   componentWillMount() {
-    const job = getJobById(this.props.match.params.id);
-    console.log(job);
-    this.setState({
-      job,
+    getJobById(this.props.match.params.id).then((response) => {
+      console.log(response);
+      this.setState({
+        job: response.data,
+      });
     });
   }
 

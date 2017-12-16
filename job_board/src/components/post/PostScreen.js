@@ -22,17 +22,18 @@ export default class PostScreen extends Component {
     this.setState(newState);
   }
 
-  submitAJob() {
+  submitAJob(event) {
+    event.preventDefault();
     const jobs = getAllJobs();
     const job = {
-      id: jobs.length + 1,
       title: this.state.title,
       shortDescription: this.state.shortDescription,
       longDescription: this.state.longDescription,
     };
-    postAJob(job);
-    this.clearState();
-    alert('Thank you for submitting your post!');
+    postAJob(job).then((response) => {
+      alert(JSON.stringify(response));
+      this.clearState();
+    });
   }
 
   clearState() {
@@ -62,7 +63,7 @@ export default class PostScreen extends Component {
             Long Description:
             <textarea value={this.state.longDescription} onChange={(event) => this.updateField('longDescription', event.target.value)} />
           </label>
-          <button style={{ width: '10%',}} onSubmit={() => this.submitAJob()}>Submit</button>
+          <button style={{ width: '10%',}} onClick={(event) => this.submitAJob(event)}>Submit</button>
         </form>
       </div>
     );

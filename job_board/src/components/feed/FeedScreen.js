@@ -13,9 +13,11 @@ export default class FeedScreen extends Component {
   }
 
   componentWillMount() {
-    const jobs = getAllJobs();
-    this.setState({
-      jobs
+    getAllJobs().then((response) => {
+      console.log(response.data);
+      this.setState({
+        jobs: response.data
+      });
     });
   }
 
