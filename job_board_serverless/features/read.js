@@ -1,34 +1,24 @@
 'use strict';
+const AWS = require("aws-sdk");
+AWS.config.update({region:'us-east-1'});
 const dynamoDB = new AWS.DynamoDB.DocumentClient();
 
 const params = {
-    TableName: 'job-posts'
+    TableName: process.env.DYNAMODB_TABLE
   };
 
-  module.exports.getJobPost = (event, context, callback) => {
-    dynamoDB.scan(params, (error, result) => {
-      if (error) {
-        console.error(error);
-        callback(new Error('Couldn\'t fetch account'));
-        return;
-      }
-  
-      const response = {
-        statusCode: 200, 
-        body: JSON.stringify(result.Items)
-      }
-      callback(null, response)
-    });
-  }
+module.exports.getJobPosts = (event, context, callback) => {
+  dynamoDB.scan(params, (error, result) => {
+    if (error) {
+      console.error(error);
+      callback(new Error('Couldn\'t fetch account'));
+      return;
+    }
 
-// module.exports.getJobPost = (event, context, callback) => {
-// 	const message = 'Thanks for hitting the job board get route. Have a nice day :)'
-//   const response = {
-//     statusCode: 200,
-//     body: JSON.stringify({
-//       message: message
-//     }),
-//   };
-
-//   callback(null, response);
-// };
+    const response = {
+      statusCode: 200, 
+      body: JSON.stringify(result.Items)
+    }
+    callback(null, response)
+  });
+}
