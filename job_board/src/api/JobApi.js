@@ -38,3 +38,7 @@ export function getJobById(id) {
   }
   return null;
 }
+
+export function postAJob(job) {
+  jobs.push(job);
+}
