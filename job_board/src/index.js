@@ -1,7 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
 // import registerServiceWorker from './registerServiceWorker';
+
+function App() {
+  return (
+    <div>
+      <h2>Christian Hackers Job Board</h2>
+    </div>
+  )
+}
 
 ReactDOM.render(<App />, document.getElementById('root'));
 // registerServiceWorker();
