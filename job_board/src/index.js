@@ -1,14 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import registerServiceWorker from './registerServiceWorker';
-
-function App() {
-  return (
-    <div>
-      <h2>Christian Hackers Job Board</h2>
-    </div>
-  )
-}
+import App from './components/app/App';
 
 ReactDOM.render(<App />, document.getElementById('root'));
 // registerServiceWorker();
