@@ -85,7 +85,6 @@ functions:
           path: jobPosts/{id}
           method: get
           cors: true
-          private: true
 
   createJobPost:
     handler: features/create.createJobPost
