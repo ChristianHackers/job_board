@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports.read = (event, context, callback) => {
+module.exports.getJobPost = (event, context, callback) => {
 	const message = 'Thanks for hitting the job board get route. Have a nice day :)'
   const response = {
     statusCode: 200,
