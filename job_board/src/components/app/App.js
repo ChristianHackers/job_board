@@ -15,14 +15,13 @@ export default () => {
       <div>
         <ul>
           <li><Link to="/">Feed</Link></li>
-          <li><Link to="/details">Details</Link></li>
           <li><Link to="/post">Post</Link></li>
         </ul>
 
         <hr/>
 
         <Route exact path="/" component={FeedScreen}/>
-        <Route path="/details" component={DetailsScreen}/>
+        <Route path="/details/:id" component={DetailsScreen}/>
         <Route path="/post" component={PostScreen}/>
       </div>
     </Router>
