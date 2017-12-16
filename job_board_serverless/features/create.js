@@ -1,31 +1,18 @@
-const uuid = require("uuid");
-const AWS = require("aws-sdk");
+const saveJobPost = require("./saveJobPost.js");
 
-const dynamoDb = new AWS.DynamoDB.DocumentClient();
+module.exports.createJobPost = (event, context, callback) => {
+	// we need to parse the data that is being sent to the api
+	// event.body contains the data that a client sends to the api
+	// so now we can access any of the data within the event body via dot notation, now that we've converted it from JSON to a javascript object
+	// what our api expects is that within the event body there will be an object with a property 'title', and title has text as it's value
+  const jobPostData = JSON.parse(event.body);
+  saveJobPost(jobPostData, event);
 
-module.exports = (jobPostData, businessName) => {
-	console.log("In the save to DB function", jobPostData);
-  const date = JSON.stringify(new Date());
-  const params = {
-    TableName: job-posts,
-    Item: {
-      id: uuid.v1(),
-      businessName: 'Christian Hackers',
-      title: jobPostData.title,
-      shortDescription: jobPostData.shortDescription,
-      longDescription: jobPostData.longDescription,
-      addedAt: date
-    }
+  const response = {
+    statusCode: 200,
+    body: JSON.stringify({
+      message: "Trying to create a job post here!",
+      input: event
+    })
   };
-
-  dynamoDb.put(params, error => {
-    if (error) {
-      console.error(`Error saving data to DynamoDB: ${JSON.stringify(error)}`);
-      return Promise.reject(
-        `Error saving data to DynamoDB: ${JSON.stringify(error)}`
-      );
-    } else {
-      return Promise.resolve(params.Item);
-    }
-  });  
 };
