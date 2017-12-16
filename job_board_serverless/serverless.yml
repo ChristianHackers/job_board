@@ -61,6 +61,13 @@ functions:
       - http:
           path: jobPost
           method: get
+
+  createJobPost:
+    handler: features/create.createJobPost
+    events:
+      - http:
+          path: jobPost
+          method: post
 #      - s3: ${env:BUCKET}
 #      - schedule: rate(10 minutes)
 #      - sns: greeter-topic
