@@ -10,7 +10,6 @@ const styles = {
 
 export default ({ jobs }) => {
 
-
   const comps = jobs.map((job, index) => {
     return <JobItem key={index} job={job} />
   });
