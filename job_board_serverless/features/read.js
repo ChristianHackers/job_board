@@ -17,6 +17,10 @@ module.exports.getJobPosts = (event, context, callback) => {
 
     const response = {
       statusCode: 200, 
+      headers: {
+        "Access-Control-Allow-Origin" : "*", // Required for CORS support to work
+        "Access-Control-Allow-Credentials" : true // Required for cookies, authorization headers with HTTPS
+      },
       body: JSON.stringify(result.Items)
     }
     callback(null, response)
@@ -64,6 +68,10 @@ module.exports.getJobPost = (event, context, callback) => {
     // create a response
     const response = {
       statusCode: 200,
+      headers: {
+        "Access-Control-Allow-Origin" : "*", // Required for CORS support to work
+        "Access-Control-Allow-Credentials" : true // Required for cookies, authorization headers with HTTPS
+      },
       body: JSON.stringify(result.Item),
     };
     callback(null, response);
